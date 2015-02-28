@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::group(
+	['middleware' => 'auth.api',
+	 'prefix' => '/api/v1/',
+	],
+	function()
+	{
+		Route::get('aquariums', [
+			'as' => 'aquariums',
+			'uses' => 'AquariumController@index'
+		]);
+	}
+);

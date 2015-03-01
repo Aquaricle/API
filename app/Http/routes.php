@@ -13,7 +13,7 @@
 
 Route::group(
 	['middleware' => 'auth.api',
-	 'prefix' => '/api/v1/',
+	 'prefix' => '/v1/',
 	],
 	function()
 	{
@@ -21,5 +21,35 @@ Route::group(
 			'as' => 'aquariums',
 			'uses' => 'AquariumController@index'
 		]);
+
+		Route::get('/aquarium/{aquariumID}', [
+			'as' => 'aquarium',
+			'uses' => 'AquariumController@get'
+		]);
+
+		Route::get('/aquarium/{aquariumID}/equipment', [
+			'as' => 'aquarium.equipment',
+			'uses' => 'EquipmentController@index'
+		]);
+
+		Route::get('/aquarium/{aquariumID}/equipment/maintenance', [
+			'as' => 'aquarium.equipment.maintenance',
+			'uses' => 'EquipmentController@getMaintenance'
+		]);
+
+		Route::get('/aquarium/{aquariumID}/logs', [
+			'as' => 'aquarium.log',
+			'uses' => 'AquariumLogController@index'
+		]);
+
+
+
+		Route::get('auth',
+			function()
+			{
+				return response()->json(
+					['auth' => Auth::check()]
+				);
+			});
 	}
 );

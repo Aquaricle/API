@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Aquarium;
 
 class AquariumController extends Controller
@@ -16,16 +17,14 @@ class AquariumController extends Controller
 
 	public function index()
 	{
-		return self::getAquariums();
+		return Aquarium::byAuthUser()->select('aquariumID', 'name')->get();
 	}
 
-	public function getIndex()
+	public function get($aquariumID)
 	{
-		return self::getAquariums();
+		if ($aquariumID == null)
+			return;
+		return Aquarium::singleAquarium($aquariumID);
 	}
 
-	public function getAquariums()
-	{
-		return Aquarium::get();
-	}
 }

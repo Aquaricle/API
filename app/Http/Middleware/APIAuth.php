@@ -14,7 +14,7 @@ class APIAuth {
 	 */
 	public function handle($request, Closure $next)
 	{
-		return Auth::onceBasic() ?: $next($request);
+		if (Auth::check())
+			return $next($request);
 	}
-
 }

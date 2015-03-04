@@ -1,5 +1,4 @@
-<?php
-namespace App;
+<?php namespace App;
 use Auth;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -14,9 +13,9 @@ class Equipment extends Model
 	public $primaryKey = 'equipmentID';
 	public $timestamps = true;
 
-	public function equimpentType()
+	public function equipmentType()
 	{
-		return $this->belongsTo('EquipmentType', 'equipmentTypeID');
+		return $this->belongsTo('App\EquipmentType', 'equipmentTypeID');
 	}
 
 	public function nextMaintClass()

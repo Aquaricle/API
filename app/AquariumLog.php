@@ -1,5 +1,5 @@
 <?php namespace App;
-use Auth;
+
 use Illuminate\Database\Eloquent\Model;
 
 class AquariumLog extends Model {
@@ -11,22 +11,41 @@ class AquariumLog extends Model {
 
 	public function user()
 	{
-		return $this->belongsTo('Aquarium');
+		return $this->belongsTo('App\Aquarium');
 	}
 
 	public function waterTestLog()
 	{
-		return $this->hasOne('WaterTestLog', 'aquariumLogID');
+		return $this->hasOne('App\WaterTestLog', 'aquariumLogID');
 	}
 
 	public function waterAdditiveLog()
 	{
-		return $this->hasMany('WaterAdditiveLog', 'aquariumLogID');
+		return $this->hasMany('App\WaterAdditiveLog', 'aquariumLogID');
+	}
+
+	public function equipmentLog()
+	{
+		return $this->hasMany('App\EquipmentLog', 'aquariumLogID');
 	}
 
 	public function getDates()
 	{
 	    return array('logDate');
+	}
+
+	public function toArray()
+	{
+		return [
+			'aquariumLogID' => (integer)$this->aquariumLogID,
+			'aquariumID' => (integer)$this->aquariumID,
+			'logDate' => $this->logDate,
+			'summary' => $this->summary,
+			'comments' => $this->comments,
+			'waterTests' => $this->waterTestLog,
+			'equipment' => $this->equipmentLog,
+
+		];
 	}
 
 }

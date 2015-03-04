@@ -50,7 +50,7 @@ class WaterTestLog extends Model {
 	public function toArray()
 	{
 		return [
-			'aquariumLogID' => (integer)$this->aquariumLogID,
+			//'aquariumLogID' => (integer)$this->aquariumLogID,
 			'temperature' => $this->temperature ? (real)$this->temperature : null,
 			'ammonia' => $this->ammonia ? (real)$this->ammonia : null,
 			'nitrites' => $this->nitrites ? (real)$this->nitrites : null,

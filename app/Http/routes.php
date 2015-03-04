@@ -17,7 +17,7 @@ Route::group(
 	],
 	function()
 	{
-		Route::get('aquariums', [
+		Route::get('/aquariums', [
 			'as' => 'aquariums',
 			'uses' => 'AquariumController@index'
 		]);
@@ -38,9 +38,16 @@ Route::group(
 		]);
 
 		Route::get('/aquarium/{aquariumID}/logs', [
-			'as' => 'aquarium.log',
+			'as' => 'aquarium.logs',
 			'uses' => 'AquariumLogController@index'
 		]);
+
+		Route::get('/aquarium/{aquariumID}/log/{aquariumLogID}', [
+			'as' => 'aquarium.logs.show',
+			'uses' => 'AquariumLogController@show'
+		]);
+
+
 
 
 

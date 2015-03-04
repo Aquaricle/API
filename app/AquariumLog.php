@@ -9,7 +9,7 @@ class AquariumLog extends Model {
 	public $primaryKey = 'aquariumLogID';
 	public $timestamps = false;
 
-	public function user()
+	public function aquarium()
 	{
 		return $this->belongsTo('App\Aquarium');
 	}
@@ -29,6 +29,21 @@ class AquariumLog extends Model {
 		return $this->hasMany('App\EquipmentLog', 'aquariumLogID');
 	}
 
+	public function aquariumLifeLog()
+	{
+		return $this->hasMany('App\AquariumLifeLog', 'aquariumLogID');
+	}
+
+	public function foodLog()
+	{
+		return $this->hasMany('App\FoodLog', 'aquariumLogID');
+	}
+
+	public function AquariumLogFile()
+	{
+		return $this->hasMany('App\AquariumLogFile', 'aquariumLogID');
+	}
+
 	public function getDates()
 	{
 	    return array('logDate');
@@ -37,14 +52,17 @@ class AquariumLog extends Model {
 	public function toArray()
 	{
 		return [
-			'aquariumLogID' => (integer)$this->aquariumLogID,
 			'aquariumID' => (integer)$this->aquariumID,
+			'aquariumLogID' => (integer)$this->aquariumLogID,
 			'logDate' => $this->logDate,
 			'summary' => $this->summary,
 			'comments' => $this->comments,
-			'waterTests' => $this->waterTestLog,
-			'equipment' => $this->equipmentLog,
-
+			'WaterTests' => $this->waterTestLog,
+			'WaterAdditives' => $this->waterAdditiveLog,
+			'Equipment' => $this->equipmentLog,
+			'AquariumLife' => $this->aquariumLifeLog,
+			'Feedings' => $this->foodLog,
+			'Files' => $this->aquariumLogFile,
 		];
 	}
 

@@ -17,7 +17,7 @@ class Life extends Model {
 
 	public function lifeType()
 	{
-		return $this->belongsTo('LifeType', 'lifeTypeID');
+		return $this->belongsTo('App\LifeType', 'lifeTypeID');
 	}
 
 }

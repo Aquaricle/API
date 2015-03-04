@@ -18,7 +18,7 @@ class AquariumLife extends Model {
 
 	public function life()
 	{
-		return $this->belongsTo('app\Life', 'lifeID');
+		return $this->belongsTo('App\Life', 'lifeID');
 	}
 
 	public function scopeFish($query, $aquariumID)

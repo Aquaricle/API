@@ -9,8 +9,6 @@ use Response;
 use Input;
 use DB;
 use App\AquariumLog;
-use App\WaterTestLog;
-use App\EquipmentLog;
 
 class AquariumLogController extends Controller
 {

@@ -16,9 +16,20 @@ class AquariumLifeLog extends Model {
 		return $this->belongsTo('App\AquariumLog', 'aquariumLogID');
 	}
 
-	public function life()
+	public function aquariumLife()
 	{
-		return $this->belongsTo('Life', 'lifeID');
+		return $this->belongsTo('App\AquariumLife', 'aquariumLifeID');
 	}
 
+	public function toArray()
+	{
+		return [
+			'aquariumLogID' => (integer)$this->aquariumLogID,
+			'lifeID' => (integer)$this->aquariumLifeID,
+			'type' => $this->aquariumLife->Life->LifeType->lifeTypeName,
+			'nickname' => $this->aquariumLife->nickname,
+			'commonName' => $this->aquariumLife->Life->commonName,
+			'scientificName' => $this->aquariumlife->Life->scientificName,
+		];
+	}
 }

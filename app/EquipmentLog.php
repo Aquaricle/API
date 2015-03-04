@@ -1,7 +1,6 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Equipment;
 
 class EquipmentLog extends Model
 {
@@ -27,6 +26,7 @@ class EquipmentLog extends Model
   {
     return [
       'aquariumLogID' => (integer)$this->aquariumLogID,
+			'equipmentID' => (integer)$this->equipmentID,
       'name' => $this->equipment->name,
       'type' => $this->equipment->equipmentType->typeName,
       'mainteance' => (bool)$this->maintenance,
